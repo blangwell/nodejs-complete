@@ -33,11 +33,11 @@ console.log(person);
 let secondPerson = Object.assign({}, person);
 console.log(secondPerson);
 
-// secondPerson.name will log 'Not Barent'
-
 // with slice() we can create a real copy, not just the pointer
+
 let myHobbies = person.hobbies.slice();
 
+// secondPerson.name will log 'Not Barent'
 person.name = 'Not Barent'; 
 person.hobbies.push('Bein cool');
 console.log(secondPerson);
