@@ -31,13 +31,13 @@ const requestHandler = (req, res) => {
       body.push(chunk);
     }); 
   
-    req.on('end', () => {
+    return req.on('end', () => {
       // convert buffered chunks to string
       const parsedBody = Buffer.concat(body).toString();
       const message = parsedBody.split('=')[1]; 
       fs.writeFile('message.txt', message, err => {
         res.statusCode = 302; // 302 => redirect
-        // res.setHeader('Location', '/');
+        res.setHeader('Location', '/');
         return res.end();
       });  
     });
