@@ -1,3 +1,5 @@
+const path = require('path');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -15,7 +17,7 @@ app.use(shopRoutes);
 
 // use so it will work on all types of requests
 app.use((req, res, next) => {
-  res.status(404).send('<h1>404 ERR-OR!</h1>')
+  res.status(404).sendFile(path.join(__dirname, 'views', '404.html'))
 })
 
 app.listen(3000);

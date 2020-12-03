@@ -1,9 +1,13 @@
+const path = require('path');
+
 const express = require('express');
 
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-  res.send('<h1>Welcome 2 Da Shop!</h1>');
+  // using path.join works on linux, mac, and windows
+  // build a path that goes routes folder => back one => views => shop
+  res.sendFile(path.join(__dirname, '../', 'views', 'shop.html'));
 });
 
 module.exports = router;
