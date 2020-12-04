@@ -9,14 +9,16 @@ const shopRoutes = require('./routes/shop');
 
 const app = express();
 
-// handlebars is not built in so we have to set engine
-app.engine('hbs', expressHbs({
-  layoutsDir: 'views/layouts/', 
-  defaultLayout: 'main-layout',
-  extname: 'hbs' // explicitly define extension if not handlebars
-}));
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
-app.set('view engine', 'hbs');
+
+// handlebars is not built in so we have to set engine
+// app.engine('hbs', expressHbs({
+//   layoutsDir: 'views/layouts/', 
+//   defaultLayout: 'main-layout',
+//   extname: 'hbs' // explicitly define extension if not handlebars
+// }));
 
 // pug autoregistered w/ express so we don't need require()
 // app.set('view engine', 'pug');
