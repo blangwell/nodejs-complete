@@ -1,7 +1,12 @@
+:root {
+  --blue: rgb(64, 224, 213);
+  --dark-salmon: rgb(213, 108, 97);
+}
 body {
   margin: 0 auto;
   padding: 0;
   font-family: sans-serif;
+  background-color: salmon;
 }
 main {
   padding: 1rem;
@@ -9,7 +14,8 @@ main {
 .main-header {
   width: 100%;
   height: 3.5rem;
-  background-color: royalblue;
+  background-color: salmon;
+  border-bottom: 1px solid var(--dark-salmon);
   color: white;
   padding: 0 1.5rem;
 }
@@ -36,6 +42,13 @@ main {
 .main-header__item a:active,
 .main-header__item a.active{
   text-decoration: none;
-  color: yellow;
+  color: var(--blue);
+  text-shadow: 2px 2px var(--dark-salmon);
 }
-
+.page-heading {
+  color: white;
+  text-shadow: 5px 3px 2px var(--dark-salmon);
+}
+.page-copy {
+  color: white;
+}

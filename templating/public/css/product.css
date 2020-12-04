@@ -1,0 +1,35 @@
+.product-form {
+  width: 20rem;
+  max-width: 80%;
+  margin: auto;
+}
+.form-control{
+  margin: 1rem 0;
+}
+.form-control label, 
+.form-control input {
+  display: block;
+  width: 100%;
+  color: var(--dark-salmon);
+}
+.form-control label {
+  color: white;
+}
+.form-control input {
+  border: 5px solid var(--dark-salmon);
+  padding: 5px;
+  font: inherit;
+  border-radius: 5px;
+}
+button {
+  font: inherit;
+  border: 1px solid var(--dark-salmon);
+  border-radius: 10px;
+  background: var(--blue);
+  color: var(--dark-salmon);
+  cursor: pointer;
+}
+button:hover {
+  background: var(--dark-salmon);
+  color: var(--blue);
+}

@@ -1,0 +1,19 @@
+extends layouts/main-layout.pug
+
+block content
+  main
+    if prods.length > 0
+      .grid
+        each product in prods
+          article.card.product-item
+            header.card__header
+              h1.product_title #{product.title}
+            .card__image
+              img(src="https://www.asme.org/getmedia/c2c8ea5a-b690-4ba7-92bb-34bd1432862b/book_guide_hero_books.png?width=300&height=315&ext=.png" alt="book picture")
+            .card__content
+              h2.product__price $20
+              p.product__description Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus labore excepturi ex, voluptates eum animi dignissimos? Excepturi neque, voluptatibus, at provident aspernatur fugiat magni temporibus non sequi dolorum vel autem.
+            .card__actions
+              button.btn Add to Cart
+    else 
+      h1 No Products
