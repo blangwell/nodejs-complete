@@ -7,6 +7,7 @@
   margin: 1rem 0;
 }
 .form-control label, 
+.form-control textarea, 
 .form-control input {
   display: block;
   width: 100%;
@@ -16,6 +17,12 @@
   color: white;
 }
 .form-control input {
+  border: 5px solid var(--dark-salmon);
+  padding: 5px;
+  font: inherit;
+  border-radius: 5px;
+}
+.form-control textarea {
   border: 5px solid var(--dark-salmon);
   padding: 5px;
   font: inherit;
@@ -32,4 +39,7 @@ button {
 button:hover {
   background: var(--dark-salmon);
   color: var(--blue);
+}
+.card__image img {
+  max-width: 10rem;
 }
