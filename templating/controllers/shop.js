@@ -1,61 +1,62 @@
 const Product = require('../models/product');
-
-exports.getIndex = (req, res, next) => {
-  const products = Product.fetchAll(products => {
-    res.render('shop/index', { 
-      pageTitle: 'Shop',
-      path: '/shop', 
-      prods: products
-    });
-  });
-};
+const Cart = require('../models/cart');
 
 exports.getProducts = (req, res, next) => {
-  const products = Product.fetchAll(products => {
-    res.render('shop/product-list', { 
-      pageTitle: 'Products',
-      path: '/products', 
-      prods: products
+  Product.fetchAll(products => {
+    res.render('shop/product-list', {
+      prods: products,
+      pageTitle: 'All Products',
+      path: '/products'
     });
   });
 };
 
-exports.getProductDetail = (req, res, next) => {
+exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
   Product.findById(prodId, product => {
-    console.log(product)
     res.render('shop/product-detail', {
-      pageTitle: 'Product Detail',
-      path: '/details',
-      product: product
+      product: product,
+      pageTitle: product.title,
+      path: '/products'
     });
   });
-}
+};
+
+exports.getIndex = (req, res, next) => {
+  Product.fetchAll(products => {
+    res.render('shop/index', {
+      prods: products,
+      pageTitle: 'Shop',
+      path: '/'
+    });
+  });
+};
 
 exports.getCart = (req, res, next) => {
   res.render('shop/cart', {
-    pageTitle: 'Your Cart',
-    path: '/cart'
+    path: '/cart',
+    pageTitle: 'Your Cart'
   });
 };
 
 exports.postCart = (req, res, next) => {
-  // productId defined in hidden input name= 
   const prodId = req.body.productId;
-  console.log(prodId);
+  Product.findById(prodId, product => {
+    Cart.addProduct(prodId, product.price);
+  });
   res.redirect('/cart');
-};
-
-exports.getCheckout = (req, res, next) => {
-  res.render('shop/checkout', {
-    pageTitle: 'Checkout',
-    path: '/checkout'
-  })
 };
 
 exports.getOrders = (req, res, next) => {
   res.render('shop/orders', {
-    pageTitle: 'Your Orders',
-    path: '/orders'
-  })
+    path: '/orders',
+    pageTitle: 'Your Orders'
+  });
+};
+
+exports.getCheckout = (req, res, next) => {
+  res.render('shop/checkout', {
+    path: '/checkout',
+    pageTitle: 'Checkout'
+  });
 };

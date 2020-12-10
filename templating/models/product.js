@@ -2,19 +2,20 @@ const fs = require('fs');
 const path = require('path');
 
 const p = path.join(
-  path.dirname(process.mainModule.filename), 
-  'data', 
+  path.dirname(process.mainModule.filename),
+  'data',
   'products.json'
 );
 
-const getProductsFromFile = (cb) => {
+const getProductsFromFile = cb => {
   fs.readFile(p, (err, fileContent) => {
     if (err) {
-      return cb([]);
+      cb([]);
+    } else {
+      cb(JSON.parse(fileContent));
     }
-    cb(JSON.parse(fileContent));
   });
-}
+};
 
 module.exports = class Product {
   constructor(title, imageUrl, description, price) {
@@ -28,13 +29,12 @@ module.exports = class Product {
     this.id = Math.random().toString();
     getProductsFromFile(products => {
       products.push(this);
-      fs.writeFile(p, JSON.stringify(products), (err) => {
-        console.log(err)
+      fs.writeFile(p, JSON.stringify(products), err => {
+        console.log(err);
       });
     });
   }
 
-  // static means call on the class itself, not an instance of it
   static fetchAll(cb) {
     getProductsFromFile(cb);
   }
@@ -43,6 +43,6 @@ module.exports = class Product {
     getProductsFromFile(products => {
       const product = products.find(p => p.id === id);
       cb(product);
-    })
+    });
   }
 };
