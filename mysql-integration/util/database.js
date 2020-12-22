@@ -1,14 +1,9 @@
-const mysql = require('mysql2');
+const {Sequelize} = require('sequelize');
+const DB_PWD = process.env.DB_PWD;
 
-// should close connection when done with the query
-// create a connection pool
-// pool manages multiple connection. each query needs its own connection
-const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root', 
-  database: 'nodejs-complete',
-  password: process.env.DB_PWD
+const sequelize = new Sequelize('nodejs-complete', 'root', DB_PWD, {
+  dialect: 'mysql', 
+  host: 'localhost'
 });
 
-// we call promises so that we can use promise chains
-module.exports = pool.promise();
+module.exports = sequelize;
